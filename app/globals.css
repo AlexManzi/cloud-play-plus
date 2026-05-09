@@ -1,13 +1,13 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #040812;
+  --foreground: #f4f7fb;
+  --panel: #09101a;
+  --accent: #7cf7d4;
+  --accent-soft: #a9ffe8;
+  --text-muted: #9db0c4;
+  --text-dim: #6f8399;
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(146, 196, 255, 0.18);
 }
 
 html {
@@ -20,13 +20,22 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  background:
+    linear-gradient(180deg, #02050c 0%, #06101d 38%, #040812 100%),
+    var(--background);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
 body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  font-family: var(--font-space-grotesk), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,8 +51,11 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(88, 166, 255, 0.28);
 }
