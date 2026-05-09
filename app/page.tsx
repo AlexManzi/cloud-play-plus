@@ -40,7 +40,7 @@ const highlights = [
   "Discord Enabled",
   "AMD Resolution Boost",
   "Android Native",
-  "Battery Optimzed",
+  "Battery Optimized",
 ] as const;
 
 export default function Home() {
