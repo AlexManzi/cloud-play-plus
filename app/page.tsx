@@ -1,3 +1,4 @@
+import { ImageCompare } from "./image-compare";
 import styles from "./page.module.css";
 
 const features = [
@@ -50,6 +51,7 @@ export default function Home() {
         <p className={styles.navBrand}>CloudPlayPlus</p>
         <div className={styles.navLinks}>
           <a href="#features">Features</a>
+          <a href="#compare">Visual Compare</a>
           <a href="#about">About</a>
           <a href="#install">Install</a>
         </div>
@@ -61,6 +63,7 @@ export default function Home() {
           </summary>
           <div className={styles.mobileNavMenu}>
             <a href="#features">Features</a>
+            <a href="#compare">Visual Compare</a>
             <a href="#about">About</a>
             <a href="#install">Install</a>
           </div>
@@ -115,6 +118,18 @@ export default function Home() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section id="compare" className={styles.compareSection}>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker}>Visual compare</p>
+          <h2>See the sharpening filter in action_</h2>
+          <p>
+            Slide across the frame to compare the untouched stream against the
+            sharpened output.
+          </p>
+        </div>
+        <ImageCompare />
       </section>
 
       <section id="about" className={styles.splitSection}>
