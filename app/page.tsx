@@ -31,7 +31,7 @@ const specs = [
 ] as const;
 
 const installSteps = [
-  "Clone the repository: `git clone https://github.com/AlexManzi/CloudPlayPlus.git`",
+  "Clone the repository.",
   "Open the project in Android Studio and let Gradle sync.",
   "Build a signed APK from Android Studio.",
 ] as const;
@@ -69,7 +69,7 @@ export default function Home() {
 
       <section id="top" className={styles.hero}>
         <div className={styles.heroCopy}>
-          <h1>A minimal Android launcher for Xbox Cloud Gaming.</h1>
+          <h1>A minimal Android launcher for Xbox Cloud Gaming_</h1>
           <p className={styles.lead}>
             Built for handhelds, tablets, and phones that need a cleaner path
             into streaming. Fast launch, sharper visuals, and optional Discord
@@ -105,7 +105,7 @@ export default function Home() {
       <section id="features" className={styles.gridSection}>
         <div className={styles.sectionHeading}>
           <p className={styles.kicker}>Why it works</p>
-          <h2>Focused features, no throwaway surface area.</h2>
+          <h2>Focused features, no throwaway surface area_</h2>
         </div>
         <div className={styles.featureGrid}>
           {features.map((feature) => (
@@ -120,7 +120,7 @@ export default function Home() {
       <section id="about" className={styles.splitSection}>
         <article className={styles.storyBlock}>
           <p className={styles.kicker}>Designed for devices like G Cloud</p>
-          <h2>Professional enough for a portfolio, practical enough to daily-drive.</h2>
+          <h2>Built for a focused handheld cloud gaming experience_</h2>
           <p>
             CloudPlayPlus is intentionally narrow in scope. It removes friction,
             keeps the app size small, and improves stream legibility without
@@ -144,7 +144,7 @@ export default function Home() {
       <section id="install" className={styles.installSection}>
         <div className={styles.sectionHeading}>
           <p className={styles.kicker}>Installation</p>
-          <h2>Build from source.</h2>
+          <h2>Build from source_</h2>
           <p>
             The current supported path is building locally in Android Studio or
             through Gradle.
@@ -153,8 +153,18 @@ export default function Home() {
 
         <div className={styles.installLayout}>
           <ol className={styles.installSteps}>
-            {installSteps.map((step) => (
-              <li key={step}>{step}</li>
+            {installSteps.map((step, index) => (
+              <li key={step}>
+                <span className={styles.stepNumber}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>{step}</span>
+                {index === 0 ? (
+                  <code className={styles.inlineCommand}>
+                    git clone https://github.com/AlexManzi/CloudPlayPlus.git
+                  </code>
+                ) : null}
+              </li>
             ))}
           </ol>
         </div>
