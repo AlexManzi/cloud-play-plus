@@ -5,9 +5,37 @@ import { PointerEvent, useRef, useState } from "react";
 
 import styles from "./page.module.css";
 
+const comparePresets = [
+  {
+    id: "1",
+    filterOnSrc: "/filterOn.png",
+    filterOffSrc: "/filterOff.png",
+    filterOnAlt: "Cloud gaming stream with sharpening filter applied",
+    filterOffAlt: "Cloud gaming stream without sharpening filter applied",
+  },
+  {
+    id: "2",
+    filterOnSrc: "/filterOnBF2.webp",
+    filterOffSrc: "/filterOffBF2.webp",
+    filterOnAlt: "Battlefield stream with sharpening filter applied",
+    filterOffAlt: "Battlefield stream without sharpening filter applied",
+  },
+  {
+    id: "3",
+    filterOnSrc: "/filterOnForza.webp",
+    filterOffSrc: "/filterOffForza.webp",
+    filterOnAlt: "Racing game stream with sharpening filter applied",
+    filterOffAlt: "Racing game stream without sharpening filter applied",
+  },
+] as const;
+
 export function ImageCompare() {
   const [position, setPosition] = useState(58);
+  const [activePresetId, setActivePresetId] = useState("1");
   const frameRef = useRef<HTMLDivElement>(null);
+  const activePreset =
+    comparePresets.find((preset) => preset.id === activePresetId) ??
+    comparePresets[0];
 
   function updateFromPointer(clientX: number) {
     const frame = frameRef.current;
@@ -44,8 +72,8 @@ export function ImageCompare() {
       >
         <div className={styles.compareBase}>
           <Image
-            src="/filterOn.png"
-            alt="Cloud gaming stream with sharpening filter applied"
+            src={activePreset.filterOnSrc}
+            alt={activePreset.filterOnAlt}
             fill
             sizes="(max-width: 920px) 100vw, 1120px"
             className={styles.compareImage}
@@ -57,8 +85,8 @@ export function ImageCompare() {
 
         <div className={styles.compareOverlay}>
           <Image
-            src="/filterOff.png"
-            alt="Cloud gaming stream without sharpening filter applied"
+            src={activePreset.filterOffSrc}
+            alt={activePreset.filterOffAlt}
             fill
             sizes="(max-width: 920px) 100vw, 1120px"
             className={styles.compareImage}
@@ -73,6 +101,25 @@ export function ImageCompare() {
         </div>
 
         <div className={styles.compareHotspot} aria-hidden="true" />
+      </div>
+
+      <div
+        className={styles.comparePresetControls}
+        aria-label="Choose a compare image"
+        role="group"
+      >
+        {comparePresets.map((preset) => (
+          <button
+            key={preset.id}
+            type="button"
+            className={styles.comparePresetButton}
+            data-active={preset.id === activePresetId}
+            onClick={() => setActivePresetId(preset.id)}
+            aria-pressed={preset.id === activePresetId}
+          >
+            {preset.id}
+          </button>
+        ))}
       </div>
     </div>
   );

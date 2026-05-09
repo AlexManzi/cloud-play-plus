@@ -250,6 +250,37 @@
   gap: 1rem;
 }
 
+.comparePresetControls {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.comparePresetButton {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(5, 10, 18, 0.82);
+  color: var(--text-muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.comparePresetButton[data-active="true"] {
+  border-color: rgba(159, 209, 255, 0.4);
+  background: rgba(10, 22, 38, 0.92);
+  color: var(--foreground);
+}
+
 .compareFrame {
   --compare-position: 58%;
   position: relative;
@@ -268,6 +299,10 @@
 .compareOverlay {
   position: absolute;
   inset: 0;
+}
+
+.compareBase {
+  clip-path: inset(0 0 0 var(--compare-position));
 }
 
 .compareOverlay {
@@ -431,7 +466,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .primaryAction:hover,
-  .secondaryAction:hover {
+  .secondaryAction:hover,
+  .comparePresetButton:hover {
     transform: translateY(-1px);
     opacity: 1;
   }
@@ -444,6 +480,11 @@
 
   .secondaryAction:hover {
     color: var(--foreground);
+  }
+
+  .comparePresetButton:hover {
+    color: var(--foreground);
+    border-color: rgba(255, 255, 255, 0.24);
   }
 }
 
